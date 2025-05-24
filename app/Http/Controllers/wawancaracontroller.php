@@ -10,7 +10,7 @@ class wawancaracontroller extends controller
     public function wawancara()  // Pertahankan nama method custom
     {
         $wawancaras = wawancara::latest()->get();
-        return view('SPMB.wawancara', compact('wawancaras')); // Arahkan ke view index.blade.php
+        return view('SPMB.wawancara', compact('wawancaras')); // Arahkan ke view index
     }
 
     public function store(Request $request)
@@ -30,7 +30,8 @@ class wawancaracontroller extends controller
     public function destroy(wawancara $wawancara)
     {
         $wawancara->delete();
-        return redirect()->route('wawancara.destroy')->with('success', 'Data berhasil dihapus!');
+        return redirect()->route('wawancara.index')->with('success', 'Data berhasil dihapus!');
     }
+
 }
 

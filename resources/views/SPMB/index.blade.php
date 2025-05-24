@@ -18,12 +18,6 @@
         <li><a href="{{ route('SPMB.pendaftaran') }}" class="hover:underline">Pendaftaran</a></li>
         <li><a href="{{ route('wawancara.index') }}" class="hover:underline">Wawancara</a></li>
         <li><a href="#" class="hover:underline">Diterima</a></li>
-        <li><a href="#" class="hover:underline">Pembayaran</a></li>
-        <li><a href="#" class="hover:underline">Lunas</a></li>
-        <li><a href="#" class="hover:underline">Cicil</a></li>
-        <li><a href="#" class="hover:underline">Belum Bayar</a></li>
-        <li><a href="#" class="hover:underline">Mundur</a></li>
-        <li><a href="#" class="hover:underline">Siswa</a></li>
       </ul>
     </div>
   </nav>

@@ -53,6 +53,12 @@
                 <option value="TOI">TOI</option>
             </select>
 
+            <select name="kondisi" class="border rounded px-2 py-1" required>
+                <option value="" disabled selected>Dinyatakan</option>
+                <option value="Lolos">Lolos</option>
+                <option value="Mundur">Mundur</option>
+            </select>
+
             <input type="number" name="jumlah" placeholder="Jumlah Wawancara" class="border rounded px-2 py-1" min="1" required>
 
             <input type="number" name="hari_ini" placeholder="Hari Ini" class="border rounded px-2 py-1" min="0" required>
@@ -69,6 +75,7 @@
                     <tr>
                         <th class="border px-2 py-1">Tahun</th>
                         <th class="border px-2 py-1">Jurusan</th>
+                        <th class="border px-2 py-1">Kondisi</th>
                         <th class="border px-2 py-1">Jumlah</th>
                         <th class="border px-2 py-1">Hari Ini</th>
                         <th class="border px-2 py-1">Kemarin</th>
@@ -80,11 +87,12 @@
                     <tr>
                         <td class="border px-2 py-1">{{ $data->tahun }}</td>
                         <td class="border px-2 py-1">{{ $data->jurusan }}</td>
+                        <td class="border px-2 py-1">{{ $data->kondisi }}</td>
                         <td class="border px-2 py-1">{{ $data->jumlah }}</td>
                         <td class="border px-2 py-1">{{ $data->hari_ini }}</td>
                         <td class="border px-2 py-1">{{ $data->kemarin }}</td>
                         <td class="border px-2 py-1">
-                            <form action="{{ route('wawancara.destroy', $data->id) }}" method="POST">
+                            <form action="{{ route('wawancara.destroy', ['wawancara' => $data->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="text-red-600 hover:underline" onclick="return confirm('Yakin hapus data ini?')">Hapus</button>

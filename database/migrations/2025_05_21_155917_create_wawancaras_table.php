@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->string('tahun');
             $table->string('jurusan');
+            $table->string('kondisi');
             $table->integer('jumlah');
             $table->integer('hari_ini');
             $table->integer('kemarin');

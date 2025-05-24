@@ -14,7 +14,7 @@
   <nav class="bg-blue-700 text-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3">
       <ul class="flex flex-wrap gap-4 text-sm md:text-base">
-        <li><a href="{{ route('SPMB.index') }}" class="hover:underline">Home</a></li>
+        <li><a href="{{ route(' dashboard') }}" class="hover:underline">Home</a></li>
         <li><a href="{{ route('SPMB.pendaftaran') }}" class="hover:underline">Pendaftaran</a></li>
         <li><a href="{{ route('wawancara.index') }}" class="hover:underline">Wawancara</a></li>
         <li><a href="#" class="hover:underline">Diterima</a></li>
@@ -26,7 +26,7 @@
         <li><a href="#" class="hover:underline">Siswa</a></li>
       </ul>
     </div>
-  </nav>    
+  </nav>
 
   <main class="max-w-5xl mx-auto mt-6 bg-white shadow-md rounded p-4">
     <h2 class="text-xl font-semibold mb-4">Tambah Data Pendaftaran</h2>

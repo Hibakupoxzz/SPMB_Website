@@ -9,6 +9,6 @@ class wawancara extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tahun', 'jurusan', 'jumlah', 'hari_ini', 'kemarin'];
+    protected $fillable = ['tahun', 'jurusan', 'kondisi', 'jumlah', 'hari_ini', 'kemarin'];
 }
 

@@ -8,30 +8,23 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
   <header class="bg-white shadow p-4">
-    <h1 class="text-2xl font-bold">SMK PLUS PELITA NUSANTARA</h1>
+    <h1 class="text-2xl font-bold text-center">SMK PLUS PELITA NUSANTARA</h1>
   </header>
 
-  <nav class="bg-blue-700 text-white shadow-md">
-    <div class="max-w-7xl mx-auto px-4 py-3">
-      <ul class="flex flex-wrap gap-4 text-sm md:text-base">
-        <li><a href="{{ route(' dashboard') }}" class="hover:underline">Home</a></li>
-        <li><a href="{{ route('SPMB.pendaftaran') }}" class="hover:underline">Pendaftaran</a></li>
-        <li><a href="{{ route('wawancara.index') }}" class="hover:underline">Wawancara</a></li>
-        <li><a href="#" class="hover:underline">Diterima</a></li>
-        <li><a href="#" class="hover:underline">Pembayaran</a></li>
-        <li><a href="#" class="hover:underline">Lunas</a></li>
-        <li><a href="#" class="hover:underline">Cicil</a></li>
-        <li><a href="#" class="hover:underline">Belum Bayar</a></li>
-        <li><a href="#" class="hover:underline">Mundur</a></li>
-        <li><a href="#" class="hover:underline">Siswa</a></li>
-      </ul>
-    </div>
-  </nav>
+<nav class="bg-blue-700 text-white shadow-md">
+  <div class="max-w-7xl mx-auto px-4 py-3">
+    <ul class="flex flex-wrap justify-center gap-4 text-center md:text-base">
+      <li><a href="{{ route('dashboard') }}" class="hover:underline">Home</a></li>
+      <li><a href="{{ route('SPMB.pendaftaran') }}" class="hover:underline">Pendaftaran</a></li>
+      <li><a href="{{ route('wawancara.index') }}" class="hover:underline">Wawancara</a></li>
+      <li><a href="{{ route('pembayaran.index') }}" class="hover:underline">Pembayaran</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <main class="max-w-5xl mx-auto mt-6 bg-white shadow-md rounded p-4">
+  <main class="max-w-5xl mx-auto mt-6 bg-whiteshadow-md rounded p-4 ">
     <h2 class="text-xl font-semibold mb-4">Tambah Data Pendaftaran</h2>
 
-    {{-- Form untuk input data siswa --}}
     <form action="{{ route('siswa.store') }}" method="POST" class="grid grid-cols-1 md:grid-cols-6 gap-4">
       @csrf
       <select name="tahun" class="border rounded px-2 py-1" required>
@@ -62,7 +55,6 @@
       </div>
     @endif
 
-    {{-- Tampilkan Data dari Database --}}
     <section class="mt-8">
       <h2 class="text-lg font-semibold mb-2">Data Tersimpan</h2>
       <table class="table-auto w-full text-left border border-gray-300">

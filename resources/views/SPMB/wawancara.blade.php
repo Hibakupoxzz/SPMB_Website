@@ -8,25 +8,18 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
   <header class="bg-white shadow p-4">
-    <h1 class="text-2xl font-bold">SMK PLUS PELITA NUSANTARA</h1>
+    <h1 class="text-2xl font-bold text-center">SMK PLUS PELITA NUSANTARA</h1>
   </header>
-  <nav class="bg-blue-700 text-white shadow-md">
-    <div class="max-w-7xl mx-auto px-4 py-3">
-      <ul class="flex flex-wrap gap-4 text-sm md:text-base">
-        <li><a href="{{ route('SPMB.index') }}" class="hover:underline">Home</a></li>
-        <li><a href="{{ route('SPMB.pendaftaran') }}" class="hover:underline">Pendaftaran</a></li>
-        <li><a href="{{ route('wawancara.index') }}" class="hover:underline">Wawancara</a></li>
-        <li><a href="#" class="hover:underline">Diterima</a></li>
-        <li><a href="#" class="hover:underline">Pembayaran</a></li>
-        <li><a href="#" class="hover:underline">Lunas</a></li>
-        <li><a href="#" class="hover:underline">Cicil</a></li>
-        <li><a href="#" class="hover:underline">Belum Bayar</a></li>
-        <li><a href="#" class="hover:underline">Mundur</a></li>
-        <li><a href="#" class="hover:underline">Siswa</a></li>
-      </ul>
-    </div>
-  </nav>
-
+<nav class="bg-blue-700 text-white shadow-md">
+  <div class="max-w-7xl mx-auto px-4 py-3">
+    <ul class="flex flex-wrap justify-center gap-4 text-center md:text-base">
+      <li><a href="{{ route('dashboard') }}" class="hover:underline">Home</a></li>
+      <li><a href="{{ route('SPMB.pendaftaran') }}" class="hover:underline">Pendaftaran</a></li>
+      <li><a href="{{ route('wawancara.index') }}" class="hover:underline">Wawancara</a></li>
+      <li><a href="{{ route('pembayaran.index') }}" class="hover:underline">Pembayaran</a></li>
+    </ul>
+  </div>
+</nav>
     <main class="max-w-5xl mx-auto mt-6 bg-white shadow-md rounded p-4">
         @if(session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
@@ -75,7 +68,7 @@
                     <tr>
                         <th class="border px-2 py-1">Tahun</th>
                         <th class="border px-2 py-1">Jurusan</th>
-                        <th class="border px-2 py-1">Kondisi</th>
+                        <th class="border px-2 py-1">Dinyatakan</th>
                         <th class="border px-2 py-1">Jumlah</th>
                         <th class="border px-2 py-1">Hari Ini</th>
                         <th class="border px-2 py-1">Kemarin</th>
@@ -95,7 +88,7 @@
                             <form action="{{ route('wawancara.destroy', ['wawancara' => $data->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="text-red-600 hover:underline" onclick="return confirm('Yakin hapus data ini?')">Hapus</button>
+                                <button class="text-red-600 hover:underline" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
                             </form>
                         </td>
                     </tr>

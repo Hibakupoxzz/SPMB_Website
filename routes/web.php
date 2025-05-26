@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pendaftarancontroller;
 use App\Http\Controllers\wawancaracontroller;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PembayaranController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -17,3 +18,6 @@ Route::get('/wawancara', [wawancaracontroller::class, 'wawancara'])->name('wawan
 Route::post('/wawancara', [wawancaracontroller::class, 'store'])->name('wawancara.store');
 Route::delete('/wawancara/{wawancara}', [wawancaracontroller::class, 'destroy'])->name('wawancara.destroy');
 
+Route::get('/pembayaran', [pembayarancontroller::class, 'index'])->name('pembayaran.index');
+Route::post('/pembayaran', [pembayarancontroller::class, 'store'])->name('pembayaran.store');
+Route::delete('/pembayaran/{id}', [pembayarancontroller::class, 'destroy'])->name('pembayaran.destroy');

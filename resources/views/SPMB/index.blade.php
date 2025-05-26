@@ -8,19 +8,20 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
   <header class="bg-white shadow p-4">
-    <h1 class="text-2xl font-bold">SMK PLUS PELITA NUSANTARA</h1>
+    <h1 class="text-2xl font-bold text-center">SMK PLUS PELITA NUSANTARA</h1>
   </header>
 
-  <nav class="bg-blue-700 text-white shadow-md">
-    <div class="max-w-7xl mx-auto px-4 py-3">
-      <ul class="flex flex-wrap gap-4 text-sm md:text-base">
-        <li><a href="{{ route('SPMB.index') }}" class="hover:underline">Home</a></li>
-        <li><a href="{{ route('SPMB.pendaftaran') }}" class="hover:underline">Pendaftaran</a></li>
-        <li><a href="{{ route('wawancara.index') }}" class="hover:underline">Wawancara</a></li>
-        <li><a href="#" class="hover:underline">Diterima</a></li>
-      </ul>
-    </div>
-  </nav>
+<nav class="bg-blue-700 text-white shadow-md">
+  <div class="max-w-7xl mx-auto px-4 py-3">
+    <ul class="flex flex-wrap justify-center gap-4 text-center md:text-base">
+      <li><a href="{{ route('dashboard') }}" class="hover:underline">Home</a></li>
+      <li><a href="{{ route('SPMB.pendaftaran') }}" class="hover:underline">Pendaftaran</a></li>
+      <li><a href="{{ route('wawancara.index') }}" class="hover:underline">Wawancara</a></li>
+      <li><a href="#" class="hover:underline">Pembayaran</a></li>
+    </ul>
+  </div>
+</nav>
+
 
   <main class="p-4 max-w-5xl mx-auto">
     <h2 class="text-xl font-semibold mt-4 mb-4">Data Pendaftar</h2>
@@ -60,7 +61,7 @@
           <td class="border px-2 py-1">-</td>
           <td class="border px-2 py-1">-</td>
           <td class="border px-2 py-1">-</td>
-          <td class="border px-2 py-1">-</td>
+          <td class="border px-2 py-1">-</td>`
           <td class="border px-2 py-1">-</td>
           <td class="border px-2 py-1">-</td>
         </tr>

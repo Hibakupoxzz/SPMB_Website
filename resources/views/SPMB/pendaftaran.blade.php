@@ -29,8 +29,8 @@
       @csrf
       <select name="tahun" class="border rounded px-2 py-1" required>
         <option value="" disabled selected>Pilih Tahun</option>
-        <option value="2025">2025</option>
-        <option value="2024">2024</option>
+        <option value="2025">2026</option>
+        <option value="2024">2025</option>
       </select>
 
       <select name="jurusan" class="border rounded px-2 py-1" required>

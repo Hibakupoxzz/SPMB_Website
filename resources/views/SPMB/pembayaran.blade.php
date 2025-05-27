@@ -17,7 +17,7 @@
       <li><a href="{{ route('dashboard') }}" class="hover:underline">Home</a></li>
       <li><a href="{{ route('SPMB.pendaftaran') }}" class="hover:underline">Pendaftaran</a></li>
       <li><a href="{{ route('wawancara.index') }}" class="hover:underline">Wawancara</a></li>
-      <li><a href="{{ route('pembayaram.index') }}" class="hover:underline">Pembayaran</a></li>
+      <li><a href="{{ route('pembayaran.index') }}" class="hover:underline">Pembayaran</a></li>
     </ul>
   </div>
 </nav>

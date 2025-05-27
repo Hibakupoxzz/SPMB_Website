@@ -7,9 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-800">
-  <header class="bg-white shadow p-4">
+ <header class="bg-white shadow p-4">
     <h1 class="text-2xl font-bold text-center">SMK PLUS PELITA NUSANTARA</h1>
   </header>
+
 <nav class="bg-blue-700 text-white shadow-md">
   <div class="max-w-7xl mx-auto px-4 py-3">
     <ul class="flex flex-wrap justify-center gap-4 text-center md:text-base">
@@ -20,12 +21,8 @@
     </ul>
   </div>
 </nav>
-    <main class="max-w-5xl mx-auto mt-6 bg-white shadow-md rounded p-4">
-        @if(session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                {{ session('success') }}
-            </div>
-        @endif
+
+  <main class="max-w-5xl mx-auto mt-6 bg-whiteshadow-md rounded p-4 ">
 
         <h2 class="text-xl font-semibold mb-4">Tambah Data Wawancara</h2>
 

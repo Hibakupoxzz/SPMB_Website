@@ -29,8 +29,8 @@
       @csrf
       <select name="tahun" class="border rounded px-2 py-1" required>
         <option value="" disabled selected>Pilih Tahun</option>
-        <option value="2025">2026</option>
-        <option value="2024">2025</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
       </select>
 
       <select name="jurusan" class="border rounded px-2 py-1" required>
@@ -42,7 +42,7 @@
         <option value="TOI">TOI</option>
       </select>
 
-      <input type="number" name="jumlah" placeholder="Jumlah Pendaftar" class="border rounded px-2 py-1" min="1" required />
+      <input type="number" name="jumlah" placeholder="Total Pendaftar" class="border rounded px-2 py-1" min="1" required />
       <input type="number" name="hari_ini" placeholder="Hari Ini" class="border rounded px-2 py-1" min="0" required />
       <input type="number" name="kemarin" placeholder="Kemarin" class="border rounded px-2 py-1" min="0" required />
 
@@ -62,7 +62,7 @@
           <tr>
             <th class="border px-2 py-1">Tahun</th>
             <th class="border px-2 py-1">Jurusan</th>
-            <th class="border px-2 py-1">Jumlah</th>
+            <th class="border px-2 py-1">Total Pendaftar</th>
             <th class="border px-2 py-1">Hari Ini</th>
             <th class="border px-2 py-1">Kemarin</th>
             <th class="border px-2 py-1">Aksi</th>
@@ -77,6 +77,7 @@
               <td class="border px-2 py-1">{{ $item->hari_ini }}</td>
               <td class="border px-2 py-1">{{ $item->kemarin }}</td>
               <td class="border px-2 py-1">
+
                 <form action="{{ route('siswa.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?')">
                   @csrf
                   @method('DELETE')
@@ -85,6 +86,7 @@
               </td>
             </tr>
           @empty
+
             <tr>
               <td colspan="6" class="text-center py-2">Belum ada data.</td>
             </tr>

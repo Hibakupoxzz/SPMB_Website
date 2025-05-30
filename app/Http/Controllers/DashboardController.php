@@ -8,39 +8,27 @@ use App\Models\Wawancara;
 
 class DashboardController extends Controller
 {
-    public function index()
+   public function index()
 {
-    $jumlahPendaftaran = Pendaftaran::count();
-    $jumlahWawancara = Wawancara::count();
+// Data Pendaftaran
+    $totalPendaftar = Pendaftaran::sum('jumlah');
+    $recentPendaftaran = Pendaftaran::latest()->take(5)->get();
 
-    $hariIni = now()->toDateString();
-    $kemarin = now()->subDay()->toDateString();
+// Data Wawancara
+    $wawancaraHariIni = Wawancara::whereDate('tanggal', today())->count();
+    $avgNilai = Wawancara::avg('nilai') ?? 0;
+    $recentWawancara = Wawancara::with('pendaftaran')
+                               ->latest()
+                               ->take(5)
+                               ->get();
 
-    $pendaftaranHariIni = Pendaftaran::whereDate('created_at', $hariIni)->count();
-    $pendaftaranKemarin = Pendaftaran::whereDate('created_at', $kemarin)->count();
-
-    $pendaftaran2025 = Pendaftaran::whereYear('created_at', 2025)->count();
-    $pendaftaran2025HariIni = Pendaftaran::whereYear('created_at', 2025)->whereDate('created_at', $hariIni)->count();
-
-    $pendaftaran2024 = Pendaftaran::whereYear('created_at', 2024)->count();
-    $pendaftaran2024HariIni = Pendaftaran::whereYear('created_at', 2024)->whereDate('created_at', $hariIni)->count();
-
-    // Tambahan untuk per jurusan
-    $perJurusan = Pendaftaran::selectRaw('jurusan, COUNT(*) as total')
-                    ->groupBy('jurusan')
-                    ->get();
-
-    return view('SPMB.index', compact(
-        'jumlahPendaftaran',
-        'jumlahWawancara',
-        'pendaftaranHariIni',
-        'pendaftaranKemarin',
-        'pendaftaran2025',
-        'pendaftaran2025HariIni',
-        'pendaftaran2024',
-        'pendaftaran2024HariIni',
-        'perJurusan' // Tambahkan ini
+    return view('index', compact(
+        'totalPendaftar',
+        'recentPendaftaran',
+        'wawancaraHariIni',
+        'avgNilai',
+        'recentWawancara'
     ));
 }
-
 }
+

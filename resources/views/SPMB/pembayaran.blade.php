@@ -80,7 +80,8 @@
             <td class="border px-2 py-1">{{ $item->status_pembayaran }}</td>
             <td class="border px-2 py-1">{{ $item->jumlah }}</td>
             <td class="border px-2 py-1">
-              <form action="{{ route('pembayaran.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?')">
+
+                <form action="{{ route('pembayaran.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?')">
                 @csrf
                 @method('DELETE')
                 <button class="text-red-600">Hapus</button>

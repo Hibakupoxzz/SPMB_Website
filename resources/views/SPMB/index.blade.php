@@ -22,7 +22,7 @@
           <a href="{{ route('dashboard') }}" class="bg-blue-800 text-white px-3 py-2 text-sm font-medium">Home</a>
           <a href="{{ route('SPMB.pendaftaran') }}" class="text-white px-3 py-2 text-sm font-medium">Pendaftaran</a>
           <a href="{{ route('wawancara.index') }}" class="text-white px-3 py-2 text-sm font-medium">Wawancara</a>
-          <a href="#" class="text-white px-3 py-2 text-sm font-medium">Pembayaran</a>
+          <a href="{{ route('pembayaran.index') }}" class="text-white px-3 py-2 text-sm font-medium">Pembayaran</a>
         </div>
       </div>
     </nav>
@@ -88,6 +88,81 @@
         </div>
       </div>
     </main>
+
+
+<!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <!-- Statistik Wawancara -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white shadow rounded-lg p-6">
+            <h3 class="text-lg font-medium text-gray-900">Total Wawancara</h3>
+            <p class="mt-2 text-3xl font-bold text-blue-600">
+            {{ number_format($totalWawancara, 0, ',', '.') }}
+            </p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-6">
+            <h3 class="text-lg font-medium text-gray-900">Wawancara Hari Ini</h3>
+            <p class="mt-2 text-3xl font-bold text-green-600">
+            {{ number_format($wawancaraHariIni, 0, ',', '.') }}
+            </p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-6">
+            <h3 class="text-lg font-medium text-gray-900">Wawancara Kemarin</h3>
+            <p class="mt-2 text-3xl font-bold text-orange-600">
+            {{ number_format($wawancaraKemarin, 0, ',', '.') }}
+            </p>
+        </div>
+        </div>
+
+        <!-- Tabel Wawancara -->
+        <div class="bg-white shadow rounded-lg overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 class="text-lg font-medium text-gray-900">Data Wawancara Terbaru</h2>
+            <a href="{{ route('wawancara.index') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
+            Lihat Semua
+            </a>
+        </div>
+
+        @if(session('success'))
+        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
+            <p>{{ session('success') }}</p>
+        </div>
+        @endif
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tahun</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jurusan</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kondisi</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jumlah</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hari Ini</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kemarin</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                @foreach($recentWawancara as $index => $wawancara)
+                <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $index + 1 }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $wawancara->tahun }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $wawancara->jurusan }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $wawancara->kondisi }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right">{{ number_format($wawancara->jumlah, 0, ',', '.') }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right">{{ number_format($wawancara->hari_ini, 0, ',', '.') }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right">{{ number_format($wawancara->kemarin, 0, ',', '.') }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-right">
+                    {{ number_format($wawancara->hari_ini + $wawancara->kemarin, 0, ',', '.') }}
+                </td>
+                </tr>
+                @endforeach
+            </tbody>
+            </table>
+        </div>
+    </div>
+</main>
 
 
     <footer class="bg-white border-t border-gray-200 mt-8">

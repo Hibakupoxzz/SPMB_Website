@@ -8,27 +8,26 @@ use App\Models\Wawancara;
 
 class DashboardController extends Controller
 {
-   public function index()
-{
-// Data Pendaftaran
-    $totalPendaftar = Pendaftaran::sum('jumlah');
-    $recentPendaftaran = Pendaftaran::latest()->take(5)->get();
+    public function index()
+    {
+        // Data Pendaftaran
+        $totalPendaftar = Pendaftaran::sum('jumlah');
+        $pendaftarHariIni = Pendaftaran::sum('hari_ini');
+        $pendaftarKemarin = Pendaftaran::sum('kemarin');
+        $recentPendaftaran = Pendaftaran::latest()->take(5)->get();
 
-// Data Wawancara
-    $wawancaraHariIni = Wawancara::whereDate('tanggal', today())->count();
-    $avgNilai = Wawancara::avg('nilai') ?? 0;
-    $recentWawancara = Wawancara::with('pendaftaran')
-                               ->latest()
-                               ->take(5)
-                               ->get();
+        // Data Wawancara (tanpa nilai)
+        $wawancaraHariIni = Wawancara::sum('hari_ini');
+        $wawancaraKemarin = Wawancara::sum('kemarin');
+        $totalWawancara = Wawancara::sum('jumlah');
+        $recentWawancara = Wawancara::latest()->take(5)->get();
 
-    return view('index', compact(
-        'totalPendaftar',
-        'recentPendaftaran',
-        'wawancaraHariIni',
-        'avgNilai',
-        'recentWawancara'
-    ));
+        $recentWawancara = Wawancara::latest()->take(5)->get();
+
+        return view('SPMB.index', compact(
+            'totalPendaftar','pendaftarHariIni','pendaftarKemarin',
+            'recentPendaftaran','totalWawancara','wawancaraHariIni',
+            'wawancaraKemarin','recentWawancara'
+        ));
+    }
 }
-}
-

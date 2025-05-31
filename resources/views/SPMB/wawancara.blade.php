@@ -15,9 +15,9 @@
   </header>
 
   <!-- Navbar -->
-  <nav class="bg-gradient-to-r from-blue-700 to-indigo-700 shadow">
+  <nav class="bg-gradient-to-r from-blue-700 to-indigo-700 shadow overflow-x-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-wrap gap-2 py-3">
+      <div class="flex space-x-4 py-3">
         @php
         $nav = [
           ['label' => 'Home', 'route' => 'dashboard'],
@@ -27,10 +27,10 @@
         ];
         @endphp
         @foreach($nav as $item)
-        <a href="{{ route($item['route']) }}"
-           class="text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-white hover:text-blue-700 transition">
-          {{ $item['label'] }}
-        </a>
+          <a href="{{ route($item['route']) }}"
+             class="text-white whitespace-nowrap px-4 py-2 rounded-md text-sm font-medium hover:bg-white hover:text-blue-700 transition">
+            {{ $item['label'] }}
+          </a>
         @endforeach
       </div>
     </div>

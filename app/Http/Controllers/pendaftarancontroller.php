@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pendaftaran;
+use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 
 class pendaftarancontroller extends Controller

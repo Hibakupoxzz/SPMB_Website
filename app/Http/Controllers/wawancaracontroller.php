@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\wawancara;
+use App\Models\Wawancara;
 use Illuminate\Http\Request;
 
 class wawancaracontroller extends controller

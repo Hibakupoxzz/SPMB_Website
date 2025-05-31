@@ -9,7 +9,7 @@ class PembayaranController extends Controller
 {
     public function index()
     {
-        $data_pembayaran = pembayaran::all();
+        $data_pembayaran = Pembayaran::all();
         return view('SPMB.pembayaran', compact('data_pembayaran'));
     }
 
@@ -22,14 +22,14 @@ class PembayaranController extends Controller
             'jumlah' => 'required|integer|min:1',
         ]);
 
-        pembayaran::create($request->all());
+        Pembayaran::create($request->all());
 
         return redirect()->route('pembayaran.index')->with('success', 'Data berhasil ditambahkan.');
     }
 
     public function destroy($id)
     {
-        pembayaran::findOrFail($id)->delete();
+        Pembayaran::findOrFail($id)->delete();
         return redirect()->route('pembayaran.index')->with('success', 'Data berhasil dihapus.');
     }
 }

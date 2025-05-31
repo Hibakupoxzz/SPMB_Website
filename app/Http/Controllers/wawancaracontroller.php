@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Wawancara;
 use Illuminate\Http\Request;
 
-class wawancaracontroller extends controller
+class wawancaracontroller extends Controller
 {
     public function wawancara()  // Pertahankan nama method custom
     {

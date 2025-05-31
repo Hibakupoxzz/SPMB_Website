@@ -15,16 +15,27 @@
     </header>
 
     <!-- Navigation -->
-    <nav class="bg-blue-700">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex space-x-8">
-          <a href="{{ route('dashboard') }}" class="bg-blue-800 text-white px-3 py-2 text-sm font-medium">Home</a>
-          <a href="{{ route('SPMB.pendaftaran') }}" class="text-white px-3 py-2 text-sm font-medium">Pendaftaran</a>
-          <a href="{{ route('wawancara.index') }}" class="text-white px-3 py-2 text-sm font-medium">Wawancara</a>
-          <a href="{{ route('pembayaran.index') }}" class="text-white px-3 py-2 text-sm font-medium">Pembayaran</a>
-        </div>
+  <!-- Navbar -->
+  <nav class="bg-gradient-to-r from-blue-700 to-indigo-700 shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex space-x-4 py-3">
+        @php
+        $nav = [
+          ['label' => 'Home', 'route' => 'dashboard'],
+          ['label' => 'Pendaftaran', 'route' => 'SPMB.pendaftaran'],
+          ['label' => 'Wawancara', 'route' => 'wawancara.index'],
+          ['label' => 'Pembayaran', 'route' => 'pembayaran.index'],
+        ];
+        @endphp
+        @foreach($nav as $item)
+          <a href="{{ route($item['route']) }}"
+             class="text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-white hover:text-blue-700 transition">
+            {{ $item['label'] }}
+          </a>
+        @endforeach
       </div>
-    </nav>
+    </div>
+  </nav>
 
   <main class="max-w-5xl mx-auto mt-6 bg-whiteshadow-md rounded p-4 ">
     <h2 class="text-xl font-semibold mb-4">Tambah Data Pendaftaran</h2>
@@ -98,6 +109,10 @@
         </tbody>
       </table>
     </section>
+
+  <footer class="text-center text-sm text-gray-600 mt-6 mb-4">
+    <a href="https://www.smkpluspnb.sch.id/">SMK PLUS PELITA NUSANTARA © 2025 Devaccto IT. <span class="text-blue-600 underline">Powered by PENUS</a></span>
+  </footer>
   </main>
 </body>
 </html>

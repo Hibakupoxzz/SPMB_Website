@@ -1,175 +1,163 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard - SPMB PENUS</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
-<body class="bg-gray-50">
-  <div class="min-h-screen">
-    <!-- Header -->
-    <header class="bg-white shadow">
-      <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
-        <h1 class="text-2xl font-bold text-gray-900">SMK PLUS PELITA NUSANTARA</h1>
-      </div>
-    </header>
+<body class="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen flex flex-col">
 
-    <!-- Navigation -->
-    <nav class="bg-blue-700">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex space-x-8">
-          <a href="{{ route('dashboard') }}" class="bg-blue-800 text-white px-3 py-2 text-sm font-medium">Home</a>
-          <a href="{{ route('SPMB.pendaftaran') }}" class="text-white px-3 py-2 text-sm font-medium">Pendaftaran</a>
-          <a href="{{ route('wawancara.index') }}" class="text-white px-3 py-2 text-sm font-medium">Wawancara</a>
-          <a href="{{ route('pembayaran.index') }}" class="text-white px-3 py-2 text-sm font-medium">Pembayaran</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-      <!-- Statistik Utama -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white shadow rounded-lg p-6">
-          <h3 class="text-lg font-medium text-gray-900">Total Pendaftar</h3>
-          <p class="mt-2 text-3xl font-bold text-blue-600">
-            {{ number_format($totalPendaftar, 0, ',', '.') }}
-          </p>
-        </div>
-        <div class="bg-white shadow rounded-lg p-6">
-          <h3 class="text-lg font-medium text-gray-900">Pendaftar Hari Ini</h3>
-          <p class="mt-2 text-3xl font-bold text-green-600">
-            {{ number_format($pendaftarHariIni, 0, ',', '.') }}
-          </p>
-        </div>
-        <div class="bg-white shadow rounded-lg p-6">
-          <h3 class="text-lg font-medium text-gray-900">Pendaftar Kemarin</h3>
-          <p class="mt-2 text-3xl font-bold text-orange-600">
-            {{ number_format($pendaftarKemarin, 0, ',', '.') }}
-          </p>
-        </div>
-      </div>
-
-      <!-- Tabel Ringkasan -->
-      <div class="bg-white shadow rounded-lg overflow-hidden">
-        <div class="px-6 py-4 border-b border-gray-200">
-          <h2 class="text-lg font-medium text-gray-900">Data Pendaftaran Terbaru</h2>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-              <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">No</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tahun</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Jurusan</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Hari Ini</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Kemarin</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
-              </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-              @foreach($recentPendaftaran as $index => $data)
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $index + 1 }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $data->tahun }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $data->jurusan }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ number_format($data->hari_ini, 0, ',', '.') }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ number_format($data->kemarin, 0, ',', '.') }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">
-                  {{ number_format($data->hari_ini + $data->kemarin, 0, ',', '.') }}
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-          </a>
-        </div>
-      </div>
-    </main>
-
-
-<!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-        <!-- Statistik Wawancara -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white shadow rounded-lg p-6">
-            <h3 class="text-lg font-medium text-gray-900">Total Wawancara</h3>
-            <p class="mt-2 text-3xl font-bold text-blue-600">
-            {{ number_format($totalWawancara, 0, ',', '.') }}
-            </p>
-        </div>
-        <div class="bg-white shadow rounded-lg p-6">
-            <h3 class="text-lg font-medium text-gray-900">Wawancara Hari Ini</h3>
-            <p class="mt-2 text-3xl font-bold text-green-600">
-            {{ number_format($wawancaraHariIni, 0, ',', '.') }}
-            </p>
-        </div>
-        <div class="bg-white shadow rounded-lg p-6">
-            <h3 class="text-lg font-medium text-gray-900">Wawancara Kemarin</h3>
-            <p class="mt-2 text-3xl font-bold text-orange-600">
-            {{ number_format($wawancaraKemarin, 0, ',', '.') }}
-            </p>
-        </div>
-        </div>
-
-        <!-- Tabel Wawancara -->
-        <div class="bg-white shadow rounded-lg overflow-hidden">
-        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-            <h2 class="text-lg font-medium text-gray-900">Data Wawancara Terbaru</h2>
-            <a href="{{ route('wawancara.index') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
-            Lihat Semua
-            </a>
-        </div>
-
-        @if(session('success'))
-        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
-            <p>{{ session('success') }}</p>
-        </div>
-        @endif
-
-        <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-                <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tahun</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jurusan</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kondisi</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jumlah</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hari Ini</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kemarin</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                @foreach($recentWawancara as $index => $wawancara)
-                <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $index + 1 }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $wawancara->tahun }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $wawancara->jurusan }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $wawancara->kondisi }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right">{{ number_format($wawancara->jumlah, 0, ',', '.') }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right">{{ number_format($wawancara->hari_ini, 0, ',', '.') }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right">{{ number_format($wawancara->kemarin, 0, ',', '.') }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-right">
-                    {{ number_format($wawancara->hari_ini + $wawancara->kemarin, 0, ',', '.') }}
-                </td>
-                </tr>
-                @endforeach
-            </tbody>
-            </table>
-        </div>
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+      <h1 class="text-2xl font-bold text-gray-900">SMK PLUS PELITA NUSANTARA</h1>
     </div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="bg-gradient-to-r from-blue-700 to-indigo-700 shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex space-x-4 py-3">
+        @php
+        $nav = [
+          ['label' => 'Home', 'route' => 'dashboard'],
+          ['label' => 'Pendaftaran', 'route' => 'SPMB.pendaftaran'],
+          ['label' => 'Wawancara', 'route' => 'wawancara.index'],
+          ['label' => 'Pembayaran', 'route' => 'pembayaran.index'],
+        ];
+        @endphp
+        @foreach($nav as $item)
+          <a href="{{ route($item['route']) }}"
+             class="text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-white hover:text-blue-700 transition">
+            {{ $item['label'] }}
+          </a>
+        @endforeach
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 flex-grow space-y-16">
+
+    @php
+    // Fungsi buat card statistik
+    function statistikCard($title, $value, $color = 'text-blue-600') {
+        return <<<HTML
+        <div class="bg-white shadow-xl rounded-xl p-6 border-l-4 border-blue-500">
+          <h3 class="text-sm font-semibold text-gray-600">{$title}</h3>
+          <p class="mt-2 text-3xl font-bold {$color}">{$value}</p>
+        </div>
+        HTML;
+    }
+    @endphp
+
+<!-- PENDAFTARAN -->
+<section>
+  <div class="mb-6 flex items-center gap-3">
+    <div class="w-1.5 h-6 bg-orange-600 rounded"></div>
+    <h2 class="text-2xl font-semibold text-gray-900">Pendaftaran</h2>
+  </div>
+
+  {{-- Total Keseluruhan --}}
+  <div class="mb-4">
+    <div class="bg-white shadow rounded-lg p-4">
+      <h3 class="text-sm font-semibold text-gray-600 mb-1">Total Semua Pendaftar Dari Semua Jurusan</h3>
+      <p class="text-2xl font-bold text-blue-700">
+        {{ number_format($totalPendaftar, 0, ',', '.') }}
+      </p>
+    </div>
+  </div>
+
+  {{-- Tabel Pendaftar Terbaru --}}
+    @include('components.dashboard-table', [
+    'title' => 'Data Pendaftaran Terbaru',
+    'link' => route('SPMB.index'),
+    'headers' => ['No', 'Tahun', 'Jurusan', 'Total Pendaftar', 'Hari Ini', 'Kemarin'],
+    'rows' => $recentPendaftaran,
+    'cols' => ['tahun', 'jurusan', 'jumlah', 'hari_ini', 'kemarin'],
+    'sum' => true
+    ])
+</section>
+
+
+<!-- WAWANCARA -->
+<section>
+    <div class="mb-6 flex items-center gap-3">
+    <div class="w-1.5 h-6 bg-green-600 rounded"></div>
+    <h2 class="text-2xl font-semibold text-gray-900">Wawancara</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+    {!! statistikCard('Total Wawancara Semua Jurusan', number_format($totalWawancara ?? 0, 0, ',', '.')) !!}
+    {!! statistikCard('Wawancara Hari Ini Semua Jurusan', number_format($wawancaraHariIni ?? 0, 0, ',', '.'), 'text-green-600') !!}
+    {!! statistikCard('Wawancara Kemarin Semua Jurusan', number_format($wawancaraKemarin ?? 0, 0, ',', '.'), 'text-orange-500') !!}
+    </div>
+
+    @include('components.dashboard-table', [
+    'title' => 'Data Wawancara Terbaru',
+    'link' => route('wawancara.index'),
+    'headers' => ['No', 'Tahun', 'Jurusan', 'Dinyatakan', 'Jumlah', 'Hari Ini', 'Kemarin'],
+    'rows' => $recentWawancara ?? [],
+    'cols' => ['tahun', 'jurusan', 'kondisi', 'jumlah', 'hari_ini', 'kemarin'],
+    'status' => false,
+    'sum' => false,
+    ])
+</section>
+
+<!-- PEMBAYARAN -->
+<section>
+    <div class="mb-6 flex items-center gap-3">
+    <div class="w-1.5 h-6 bg-purple-600 rounded"></div>
+    <h2 class="text-2xl font-semibold text-gray-900">Pembayaran</h2>
+    </div>
+
+    {!! statistikCard('Total Pembayaran Semua Jurusan', number_format($totalPembayaran ?? 0, 0, ',', '.')) !!}
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-6">
+    @foreach($statusPembayaranStats ?? [] as $status)
+        @php
+        $color = match(strtolower($status->status_pembayaran)) {
+        'lunas' => 'bg-green-100 text-green-800',
+        'belum bayar' => 'bg-red-100 text-red-800',
+        'cicil' => 'bg-yellow-100 text-yellow-800',
+        default => 'bg-gray-100 text-gray-800',
+        };
+        @endphp
+        <div class="bg-white shadow-xl rounded-xl p-6">
+        <h3 class="text-sm font-medium text-gray-600 mb-1">Status:</h3>
+        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold {{ $color }}">
+            {{ ucfirst($status->status_pembayaran) }}
+        </span>
+        <p class="mt-2 text-2xl font-bold text-blue-600">
+            {{ number_format($status->total ?? 0, 0, ',', '.') }}
+        </p>
+        </div>
+    @endforeach
+    </div>
+
+    @include('components.dashboard-table', [
+    'title' => 'Data Pembayaran Terbaru',
+    'link' => route('pembayaran.index'),
+    'headers' => ['No', 'Tahun', 'Jurusan', 'Status Pembayaran', 'Jumlah'],
+    'rows' => $recentPembayaran ?? [],
+    'cols' => ['tahun', 'jurusan', 'status_pembayaran', 'jumlah'],
+    'status' => true,
+    'sum' => false,
+    ])
+</section>
 </main>
 
-
-    <footer class="bg-white border-t border-gray-200 mt-8">
-      <div class="max-w-7xl mx-auto px-4 py-4 text-center text-sm text-gray-500">
-        PENUS © 2025 Devaccto IT. <span class="text-blue-600 underline">Powered by PENUS</span>
-      </div>
-    </footer>
-  </div>
+<!-- Footer -->
+  <footer class="text-center text-sm text-gray-600 mt-6 mb-4">
+    <a href="https://www.smkpluspnb.sch.id/">SMK PLUS PELITA NUSANTARA © 2025 Devaccto IT. <span class="text-blue-600 underline">Powered by PENUS</a></span>
+  </footer>
+</footer>
 </body>
 </html>

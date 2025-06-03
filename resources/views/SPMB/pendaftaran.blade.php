@@ -78,7 +78,7 @@
 
         <!-- Peringatan Tahun 2024 -->
         <div id="warning-2024" class="col-span-6 text-red-700 font-semibold hidden">
-          ⚠ Formulir khusus untuk tahun 2024: hanya "Tahun", "Jumlah", dan "Hari Ini" yang diperlukan.
+          ⚠ Formulir khusus untuk tahun 2024: hanya "Tahun", "Total Pendaftar", dan "Hari Ini" yang diperlukan.
         </div>
       </form>
     </div>

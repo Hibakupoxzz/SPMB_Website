@@ -37,7 +37,10 @@ class DashboardController extends Controller
         $totalPendaftar = Pendaftaran::sum('jumlah');
         $pendaftaranHariIni = Pendaftaran::sum('hari_ini');
         $pendaftaranKemarin = Pendaftaran::sum('kemarin');
-        $recentPendaftaran = Pendaftaran::latest()->take(5)->get();
+
+        // ✨ Pisahkan pendaftaran 2025 & 2024
+        $recentPendaftaran2025 = Pendaftaran::where('tahun', 2025)->latest()->get();
+        $recentPendaftaran2024 = Pendaftaran::where('tahun', 2024)->latest()->get();
 
         // Total & ringkasan Wawancara
         $totalWawancara = Wawancara::sum('jumlah');
@@ -50,11 +53,11 @@ class DashboardController extends Controller
         $recentPembayaran = Pembayaran::latest()->take(5)->get();
 
         return view('SPMB.index', compact(
-            'pendaftaranData','wawancaraData','statusPembayaranStats',
-            'totalPendaftar','pendaftaranHariIni','pendaftaranKemarin',
-            'recentPendaftaran','totalWawancara','wawancaraHariIni',
-            'wawancaraKemarin','recentWawancara','totalPembayaran',
-            'recentPembayaran'
+            'pendaftaranData', 'wawancaraData', 'statusPembayaranStats',
+            'totalPendaftar', 'pendaftaranHariIni', 'pendaftaranKemarin',
+            'recentPendaftaran2025', 'recentPendaftaran2024',
+            'totalWawancara', 'wawancaraHariIni', 'wawancaraKemarin', 'recentWawancara',
+            'totalPembayaran', 'recentPembayaran'
         ));
     }
 }

@@ -1,9 +1,15 @@
+@php use Carbon\Carbon; @endphp
+
 <div class="bg-white shadow-xl rounded-xl overflow-hidden">
-  <div class="px-4 sm:px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-    <h2 class="text-base sm:text-lg font-semibold text-gray-900">{{ $title }}</h2>
-    @isset($link)
-      <a href="{{ $link }}" class="text-sm text-blue-600 hover:underline">Lihat Semua</a>
-    @endisset
+  <div class="border-b border-gray-200">
+    <div class="overflow-x-auto">
+      <div class="px-4 sm:px-6 py-4 min-w-max flex justify-between items-center">
+        <h2 class="text-base sm:text-lg font-semibold text-gray-900">{{ $title }}</h2>
+        @isset($link)
+          <a href="{{ $link }}" class="text-sm text-blue-600 hover:underline whitespace-nowrap">Lihat Semua</a>
+        @endisset
+      </div>
+    </div>
   </div>
 
   <!-- Table Wrapper -->
@@ -32,7 +38,7 @@
                 $value = $row->$key ?? '';
               @endphp
 
-              {{-- Badge untuk status pembayaran --}}
+              {{-- Status Pembayaran --}}
               @if(isset($status) && $status && $key === 'status_pembayaran')
                 @php
                   $color = match(strtolower($value)) {
@@ -48,13 +54,19 @@
                   </span>
                 </td>
 
-              {{-- Format angka --}}
+              {{-- Angka: jumlah, hari_ini, kemarin --}}
               @elseif(in_array($key, ['hari_ini', 'kemarin', 'jumlah']))
                 <td class="px-4 sm:px-6 py-4 text-gray-700 whitespace-nowrap">
                   {{ number_format((float) $value, 0, ',', '.') }}
                 </td>
 
-              {{-- Kolom default --}}
+              {{-- Tanggal created_at --}}
+              @elseif($key === 'created_at')
+                <td class="px-4 sm:px-6 py-4 text-gray-700 whitespace-nowrap">
+                  {{ Carbon::parse($value)->translatedFormat('d M') }}
+                </td>
+
+              {{-- Default --}}
               @else
                 <td class="px-4 sm:px-6 py-4 text-gray-700 whitespace-nowrap">
                   {{ $value }}
@@ -62,7 +74,6 @@
               @endif
             @endforeach
 
-            {{-- Kolom total jika diminta --}}
             @if(isset($sum) && $sum)
               @php
                 $totalSum = ($row->hari_ini ?? 0) + ($row->kemarin ?? 0);

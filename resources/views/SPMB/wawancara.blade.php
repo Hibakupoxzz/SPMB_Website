@@ -112,8 +112,9 @@
     </section>
   </main>
 
-  <footer class="text-center text-sm text-gray-600 mt-6 mb-4">
-    <a href="https://www.smkpluspnb.sch.id/">SMK PLUS PELITA NUSANTARA © 2025 Devaccto IT. <span class="text-blue-600 underline">Powered by PENUS</span></a>
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-600 mt-6 mb-4 px-4">
+    <a href="https://www.smkpluspnb.sch.id/" class="hover:text-blue-600 transition">SMK PLUS PELITA NUSANTARA © 2025 Devaccto IT. <span class="text-blue-600 underline">Powered by PENUS</span></a>
   </footer>
 </body>
 </html>

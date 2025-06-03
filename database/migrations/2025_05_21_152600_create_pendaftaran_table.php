@@ -9,10 +9,10 @@ return new class extends Migration {
         Schema::create('pendaftarans', function (Blueprint $table) {
             $table->id();
             $table->string('tahun');
-            $table->string('jurusan');
+            $table->string('jurusan')->nullable();
             $table->integer('jumlah');
             $table->integer('hari_ini');
-            $table->integer('kemarin');
+            $table->integer('kemarin')->nullable();
             $table->timestamps();
         });
     }

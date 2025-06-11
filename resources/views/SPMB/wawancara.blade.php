@@ -58,7 +58,7 @@
 
       <select name="kondisi" class="border rounded px-3 py-2 w-full" required>
         <option value="" disabled selected>Dinyatakan</option>
-        <option value="Lolos">Lolos</option>
+        <option value="Lulus">Lulus</option>
         <option value="Mundur">Mundur</option>
       </select>
 

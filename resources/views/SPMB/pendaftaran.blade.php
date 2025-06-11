@@ -27,10 +27,9 @@
             ['label' => 'Pembayaran', 'route' => 'pembayaran.index'],
           ];
         @endphp
-
         @foreach($nav as $item)
           <a href="{{ route($item['route']) }}"
-            class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-white hover:text-blue-700 transition whitespace-nowrap">
+             class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-white hover:text-blue-700 transition whitespace-nowrap">
             {{ $item['label'] }}
           </a>
         @endforeach
@@ -42,46 +41,60 @@
   <main class="max-w-5xl mx-auto mt-6 bg-white shadow-md rounded p-4 flex-grow">
     <h2 class="text-xl font-semibold mb-4">Tambah Data Pendaftaran</h2>
 
-    <!-- Form wrapper dengan dynamic styling -->
-    <div id="form-wrapper" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4 transition-all">
-      <form action="{{ route('siswa.store') }}" method="POST" class="contents">
-        @csrf
+<!-- Form wrapper dengan dynamic styling -->
+<div id="form-wrapper" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4 transition-all">
+  <form action="{{ route('siswa.store') }}" method="POST" class="contents">
+    @csrf
 
-        <!-- Tahun -->
-        <select id="tahun" name="tahun" class="border rounded px-2 py-1 w-full" required>
-          <option value="" disabled selected>Pilih Tahun</option>
-          <option value="2025">2025</option>
-          <option value="2024">2024</option>
-        </select>
-
-        <!-- Jurusan -->
-        <select id="jurusan" name="jurusan" class="border rounded px-2 py-1 w-full" required>
-          <option value="" disabled selected>Pilih Jurusan</option>
-          <option value="RPL">RPL</option>
-          <option value="TKJ">TKJ</option>
-          <option value="DKV">DKV</option>
-          <option value="LPB">LPB</option>
-          <option value="TOI">TOI</option>
-        </select>
-
-        <!-- Jumlah -->
-        <input type="number" name="jumlah" placeholder="Total Pendaftar" class="border rounded px-2 py-1 w-full" min="1" required />
-
-        <!-- Hari Ini -->
-        <input type="number" name="hari_ini" placeholder="Hari Ini" class="border rounded px-2 py-1 w-full" min="0" required />
-
-        <!-- Kemarin -->
-        <input type="number" id="kemarin" name="kemarin" placeholder="Kemarin" class="border rounded px-2 py-1 w-full" min="0" required />
-
-        <!-- Tombol Submit -->
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full md:w-auto">Tambah</button>
-
-        <!-- Peringatan Tahun 2024 -->
-        <div id="warning-2024" class="col-span-6 text-red-700 font-semibold hidden">
-          ⚠ Formulir khusus untuk tahun 2024: hanya "Tahun", "Total Pendaftar", dan "Hari Ini" yang diperlukan.
-        </div>
-      </form>
+    <!-- Tahun -->
+    <div class="col-span-6 sm:col-span-3 md:col-span-2">
+      <select id="tahun" name="tahun" class="border rounded px-2 py-1 w-full" required>
+        <option value="" disabled selected>Pilih Tahun</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+      </select>
     </div>
+
+    <!-- Jurusan -->
+    <div class="col-span-6 sm:col-span-3 md:col-span-2">
+      <select id="jurusan" name="jurusan" class="border rounded px-2 py-1 w-full" required>
+        <option value="" disabled selected>Pilih Jurusan</option>
+        <option value="RPL">RPL</option>
+        <option value="TKJ">TKJ</option>
+        <option value="DKV">DKV</option>
+        <option value="LPB">LPB</option>
+        <option value="TOI">TOI</option>
+      </select>
+    </div>
+
+    <!-- Jumlah -->
+    <div class="col-span-6 sm:col-span-3 md:col-span-1">
+      <input type="number" name="jumlah" placeholder="Total Pendaftar" class="border rounded px-2 py-1 w-full" min="1" required />
+    </div>
+
+    <!-- Hari Ini -->
+    <div class="col-span-6 sm:col-span-3 md:col-span-1">
+      <input type="number" name="hari_ini" placeholder="Hari Ini" class="border rounded px-2 py-1 w-full" min="0" required />
+    </div>
+
+    <!-- Kemarin -->
+    <div class="col-span-6 sm:col-span-3 md:col-span-2">
+      <input type="number" id="kemarin" name="kemarin" placeholder="Kemarin" class="border rounded px-2 py-1 w-full" min="0" required />
+    </div>
+
+    <!-- Tombol Submit -->
+    <div class="col-span-6">
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full sm:w-auto">Tambah</button>
+    </div>
+
+    <!-- Peringatan Tahun 2024 -->
+    <div id="warning-2024" class="col-span-6 text-red-700 font-semibold hidden">
+      ⚠ Tahun 2024: Jurusan & Kemarin dinonaktifkan (tidak perlu diisi).
+    </div>
+  </form>
+</div>
+
+
 
     <!-- Pesan sukses -->
     @if(session('success'))
@@ -90,7 +103,7 @@
       </div>
     @endif
 
-    <!-- Tabel Data -->
+    <!-- Tabel -->
     <section class="mt-8 overflow-x-auto">
       <h2 class="text-lg font-semibold mb-2">Data Tersimpan</h2>
       <table class="table-auto w-full text-left border border-gray-300 min-w-[600px]">
@@ -129,42 +142,33 @@
       </table>
     </section>
 
-  <!-- Footer -->
-  <footer class="text-center text-sm text-gray-600 mt-6 mb-4 px-4">
-    <a href="https://www.smkpluspnb.sch.id/" class="hover:text-blue-600 transition">SMK PLUS PELITA NUSANTARA © 2025 Devaccto IT. <span class="text-blue-600 underline">Powered by PENUS</span></a>
-  </footer>
+    <!-- Footer -->
+    <footer class="text-center text-sm text-gray-600 mt-6 mb-4 px-4">
+      <a href="https://www.smkpluspnb.sch.id/" class="hover:text-blue-600 transition">
+        SMK PLUS PELITA NUSANTARA © 2025 Devaccto IT. <span class="text-blue-600 underline">Powered by PENUS</span>
+      </a>
+    </footer>
   </main>
 
-  <!-- Script dinamis -->
+  <!-- Script -->
   <script>
     const tahunSelect = document.getElementById('tahun');
     const jurusanSelect = document.getElementById('jurusan');
     const kemarinInput = document.getElementById('kemarin');
-    const formWrapper = document.getElementById('form-wrapper');
     const warning2024 = document.getElementById('warning-2024');
 
     function toggleFields() {
-      if (tahunSelect.value === '2024') {
-        jurusanSelect.required = false;
-        jurusanSelect.disabled = true;
-        kemarinInput.required = false;
-        kemarinInput.disabled = true;
+      const is2024 = tahunSelect.value === '2024';
 
-        formWrapper.classList.add('bg-red-50', 'border', 'border-red-500');
-        warning2024.classList.remove('hidden');
-      } else {
-        jurusanSelect.required = true;
-        jurusanSelect.disabled = false;
-        kemarinInput.required = true;
-        kemarinInput.disabled = false;
+      jurusanSelect.disabled = is2024;
+      kemarinInput.disabled = is2024;
 
-        formWrapper.classList.remove('bg-red-50', 'border', 'border-red-500');
-        warning2024.classList.add('hidden');
-      }
+      warning2024.classList.toggle('hidden', !is2024);
     }
 
     tahunSelect.addEventListener('change', toggleFields);
     window.addEventListener('load', toggleFields);
   </script>
+
 </body>
 </html>
